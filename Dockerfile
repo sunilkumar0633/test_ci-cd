@@ -10,13 +10,13 @@ RUN yum install -y httpd zip wget
 
 WORKDIR /var/www/html
 
-RUN wget https://www.free-css.com/assets/files/free-css-templates/download/page290/brainwave.zip
+RUN https://www.free-css.com/assets/files/free-css-templates/download/page290/wave-cafe.zip
 
-RUN unzip brainwave.zip
+RUN unzip wave-cafe.zip
 
-RUN rm -f brainwave.zip &&\
-    cp -rf brainwave-html/* . &&\
-        rm -rf brainwave
+RUN rm -f wave-cafe.zip &&\
+    cp -rf 2121_wave_cafe/* . &&\
+        rm -rf 2121_wave_cafe
 EXPOSE 80
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
