@@ -11,7 +11,7 @@ RUN yum install -y httpd zip wget
 WORKDIR /var/www/html
 RUN rm -rf ./*
 
-RUN https://www.free-css.com/assets/files/free-css-templates/download/page290/wave-cafe.zip
+RUN wget https://www.free-css.com/assets/files/free-css-templates/download/page290/wave-cafe.zip
 
 RUN unzip wave-cafe.zip
 
