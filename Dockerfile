@@ -1,12 +1,22 @@
 FROM centos:latest
-CMD rm -f /etc/yum.repo.d/*
-COPY ./local.repo /etc/yum.repo.d/local.repo
-CMD yum install httpd zip vim wget -y
+
+RUN rm -f /etc/yum.repos.d/*
+
+WORKDIR /etc/yum.repos.d
+
+COPY ./local.repo /etc/yum.repos.d/
+
+RUN yum install -y httpd zip wget
+
 WORKDIR /var/www/html
-CMD wget https://www.free-css.com/assets/files/free-css-templates/download/page290/brainwave.zip
-CMD unzip brainwave.zip
-CMD rm -rf brainwave.zip &&\
-    cp -rf brainwave/* . &&\
+
+RUN wget https://www.free-css.com/assets/files/free-css-templates/download/page290/brainwave.zip
+
+RUN unzip brainwave.zip
+
+RUN rm -f brainwave.zip &&\
+    cp -rf brainwave-html/* . &&\
         rm -rf brainwave
 EXPOSE 80
+
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
